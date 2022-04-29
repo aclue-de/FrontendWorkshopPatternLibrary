@@ -1,1 +1,1 @@
-# FrontendWorkshopPatternLibrary
+# FrontendWorkshop_PatternLibrary
