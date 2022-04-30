@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Generate version identifier
-        uses: ../actions/generateVersion
+        uses: ./actions/generateVersion
         id: generate_version
         with:
           major: 1
