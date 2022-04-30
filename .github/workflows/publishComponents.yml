@@ -37,6 +37,9 @@ jobs:
         run: yarn esbuild
 
   publish:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
       - name: Generate version identifier
         uses: ../actions/generateVersion
         id: generate_version
