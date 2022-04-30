@@ -24,7 +24,7 @@ jobs:
       - name: Setup .npmrc
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.WORKFLOW_PAT }}" >> ~/.npmrc
-          echo "@otto-ec:registry=https://npm.pkg.github.com/${{ github.repository_owner }}" >> ~/.npmrc
+          echo "@aclue-de:registry=https://npm.pkg.github.com/${{ github.repository_owner }}" >> ~/.npmrc
 
       - name: Yarn install with caching
         run: yarn install
