@@ -1,8 +1,8 @@
 {
   "name": "@aclue-de/web-components",
   "repository": "git@github.com:aclue-de/FrontendWorkshop_PatternLibrary.git",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "main": "dist/components.js",
   "module": "dist/components.js",
   "scripts": {

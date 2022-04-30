@@ -9,10 +9,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  - build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.14.0
 
       - uses: actions/cache@v2
         with:
@@ -28,8 +33,12 @@ jobs:
       - name: Yarn install with caching
         run: yarn install
 
+      - name: build
+        run: yarn esbuild
+
+  - publish:
       - name: Generate version identifier
-        uses: ./actions/generateVersion
+        uses: ../actions/generateVersion
         id: generate_version
         with:
           major: 1
@@ -37,9 +46,6 @@ jobs:
 
       - name: Set version
         run: yarn version --no-git-tag-version --new-version ${{ steps.generate_version.outputs.version }}
-
-      - name: build
-        run: yarn esbuild
 
       - name: Publish
         run: cd dist && npm publish --tag ${{ steps.generate_version.outputs.tag }}
