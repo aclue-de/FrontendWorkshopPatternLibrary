@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  - build:
+  build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -36,7 +36,7 @@ jobs:
       - name: build
         run: yarn esbuild
 
-  - publish:
+  publish:
       - name: Generate version identifier
         uses: ../actions/generateVersion
         id: generate_version
