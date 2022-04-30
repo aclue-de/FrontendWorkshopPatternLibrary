@@ -41,9 +41,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Generate version identifier
-        uses: ./actions/generateVersion
+        uses: ${GITHUB_WORKSPACE}/../actions/generateVersion
         id: generate_version
         with:
           major: 1
