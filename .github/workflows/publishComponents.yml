@@ -2,10 +2,6 @@ name: publish-components
 
 on:
   push:
-    paths:
-      - src/components/**/*
-      - .github/workflows/publishComponents.yml
-      - yarn.lock
   workflow_dispatch:
 
 jobs:
