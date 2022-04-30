@@ -3,14 +3,10 @@ name: publish-components
 on:
   push:
     paths:
-      - packages/components/**/*
+      - src/components/**/*
       - .github/workflows/publishComponents.yml
       - yarn.lock
   workflow_dispatch:
-
-defaults:
-  run:
-    working-directory: packages/components
 
 jobs:
   publish:
