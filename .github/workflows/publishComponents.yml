@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Generate version identifier
-        uses: aclue-de/FrontendWorkshop_PatternLibrary/actions/generateVersion@main
+        uses: .actions/generateVersion/dist
         id: generate_version
         with:
           major: 1
