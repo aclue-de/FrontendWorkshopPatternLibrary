@@ -1,0 +1,46 @@
+name: publish-components
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.14.0
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Setup .npmrc
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.WORKFLOW_PAT }}" >> ~/.npmrc
+          echo "@aclue-de:registry=https://npm.pkg.github.com/${{ github.repository_owner }}" >> ~/.npmrc
+
+      - name: Yarn install with caching
+        run: yarn install
+
+      - name: build
+        run: yarn esbuild
+
+      - name: Generate version identifier
+        uses: ./actions/generateVersion
+        id: generate_version
+        with:
+          major: 1
+          minor: 0
+
+      - name: Set version
+        run: yarn version --no-git-tag-version --new-version ${{ steps.generate_version.outputs.version }}
+
+      - name: Publish
+        run: cp package.json dist/package.json && cd dist && npm publish --tag ${{ steps.generate_version.outputs.tag }}

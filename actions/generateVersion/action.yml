@@ -1,0 +1,20 @@
+name: Generate version
+description: 'Generate version from given inputs'
+
+inputs:
+  major:
+    required: true
+    description: "Major version"
+  minor:
+    required: true
+    description: "Minor version"
+
+outputs:
+  version:
+    description: "Full version string"
+  tag:
+    description: "Tag to use when calling 'npm publish'. Is either latest or the cleaned ref."
+
+runs:
+  using: node12
+  main: dist/main.js
