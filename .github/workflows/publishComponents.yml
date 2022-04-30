@@ -29,7 +29,7 @@ jobs:
         run: yarn install
 
       - name: Generate version identifier
-        uses: actions/generateVersion
+        uses: ./actions/generateVersion
         id: generate_version
         with:
           major: 1
