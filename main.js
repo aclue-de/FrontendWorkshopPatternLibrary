@@ -1,4 +1,3 @@
-import './style.css'
 import './src/components/NumberPad'
 import './src/components/RadialPicker'
 import './src/components/TouchSpinner'
